@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Model files (optional, but since they are small here we can push them. Wait, if it's a huge model we might ignore it, but Random Forest on a small CSV is tiny. Let's push the model so it works out of the box).
+# *.joblib

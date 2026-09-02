@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Performance Predictor</title>
+    <meta name="description" content="Predict student academic performance based on key factors using Machine Learning.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-area">
+                <div class="logo">Performance Predictor</div>
+                <div class="nav-subtitle">Estimate academic performance using<br>previous academic data and preparation habits.</div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="intro-text">
+            <h2>Predict academic performance</h2>
+            <p>Get an estimated final score based on academic history and preparation.</p>
+        </div>
+
+        <div class="layout-grid">
+            <!-- Left Column: Form -->
+            <section class="card form-section">
+                <div class="form-header">
+                    <h3>Student information</h3>
+                </div>
+                
+                <form id="prediction-form">
+                    
+                    <div class="form-group-section">
+                        <h4>Academic data</h4>
+                        <hr class="section-divider">
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="Study_Hours">Study hours/week</label>
+                                <input type="number" id="Study_Hours" name="Study_Hours" min="0" max="40" step="0.5" required placeholder="e.g. 10">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="Attendance">Attendance (%)</label>
+                                <input type="number" id="Attendance" name="Attendance" min="0" max="100" step="1" required placeholder="e.g. 85">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="Previous_Score">Previous score</label>
+                                <input type="number" id="Previous_Score" name="Previous_Score" min="0" max="100" step="1" required placeholder="e.g. 75">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-section">
+                        <h4>Background</h4>
+                        <hr class="section-divider">
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="Parental_Education">Parental education</label>
+                                <select id="Parental_Education" name="Parental_Education" required>
+                                    <option value="" disabled selected>Select level</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Bachelor's">Bachelor's Degree</option>
+                                    <option value="Master's">Master's Degree</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="Test_Preparation">Test preparation</label>
+                                <select id="Test_Preparation" name="Test_Preparation" required>
+                                    <option value="" disabled selected>Select status</option>
+                                    <option value="None">None</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="primary-button">
+                        Generate prediction
+                    </button>
+                </form>
+            </section>
+
+            <!-- Right Column: Result -->
+            <section class="card result-section">
+                <h3>Prediction</h3>
+                
+                <!-- Initial State Placeholder -->
+                <div id="placeholder-container">
+                    <p class="subtitle">Your estimated score</p>
+                    <div class="score-display">
+                        <span class="score-number">—</span>
+                        <span class="score-out-of">/ 100</span>
+                    </div>
+                    <div class="placeholder-text-area">
+                        <p id="placeholder-desc" class="placeholder-desc">Fill in the student details to generate a prediction.</p>
+                    </div>
+                    <hr class="divider">
+                    <p class="footer-msg">The prediction is generated using the trained ML model.</p>
+                </div>
+
+                <!-- Result State -->
+                <div id="result-container" class="hidden">
+                    <p class="subtitle">Your estimated score</p>
+                    <div class="score-display">
+                        <span id="predicted-score" class="score-number">--</span>
+                        <span class="score-out-of">/ 100</span>
+                    </div>
+                    
+                    <div class="result-details">
+                        <p id="score-message" class="score-message">--</p>
+                    </div>
+
+                    <div class="factors-section">
+                        <h4>Based on:</h4>
+                        <ul class="factors-list">
+                            <li>• Academic history</li>
+                            <li>• Attendance</li>
+                            <li>• Study time</li>
+                            <li>• Test preparation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
